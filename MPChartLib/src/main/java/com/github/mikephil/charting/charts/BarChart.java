@@ -58,8 +58,8 @@ public class BarChart extends BarLineChartBase<BarData> implements BarDataProvid
 
         setHighlighter(new BarHighlighter(this));
 
-        getXAxis().setSpaceMin(0.5f);
-        getXAxis().setSpaceMax(0.5f);
+        getXAxis().setSpaceMin(0.01f);
+        getXAxis().setSpaceMax(0.01f);
     }
 
     @Override
@@ -247,7 +247,7 @@ public class BarChart extends BarLineChartBase<BarData> implements BarDataProvid
      * @param barSpace   the space between individual bars in values (not pixels) e.g. 0.1f for bar width 1f
      */
     public void groupBars(float fromX, float groupSpace, float barSpace) {
-
+        Log.d("_haha", "fromX = " + fromX + ", groupSpace = " + groupSpace + ", barSpace = " + barSpace);
         if (getBarData() == null) {
             throw new RuntimeException("You need to set data for the chart before grouping bars.");
         } else {

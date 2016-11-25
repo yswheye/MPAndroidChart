@@ -16,7 +16,7 @@
         android:label="@string/app_name"
         android:theme="@style/AppTheme" >
         <activity
-            android:name="com.xxmassdeveloper.mpchartexample.notimportant.MainActivity"
+            android:name=".AnotherBarActivity"
             android:label="@string/app_name" >
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
@@ -40,7 +40,7 @@
         <activity android:name="ListViewBarChartActivity"></activity>
         <activity android:name="ListViewMultiChartActivity"></activity>
         <activity android:name="StackedBarActivity"></activity>
-        <activity android:name="AnotherBarActivity"></activity>
+        <!--<activity android:name="AnotherBarActivity"></activity>-->
         <activity android:name="InvertedLineChartActivity"></activity>
         <activity android:name="CandleStickChartActivity"></activity>
         <activity android:name="CubicLineChartActivity"></activity>

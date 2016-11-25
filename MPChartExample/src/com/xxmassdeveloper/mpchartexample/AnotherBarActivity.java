@@ -13,6 +13,7 @@ import android.widget.Toast;
 import com.github.mikephil.charting.charts.BarChart;
 import com.github.mikephil.charting.components.XAxis;
 import com.github.mikephil.charting.components.XAxis.XAxisPosition;
+import com.github.mikephil.charting.components.YAxis;
 import com.github.mikephil.charting.data.BarData;
 import com.github.mikephil.charting.data.BarDataSet;
 import com.github.mikephil.charting.data.BarEntry;
@@ -48,22 +49,27 @@ public class AnotherBarActivity extends DemoBase implements OnSeekBarChangeListe
         mChart = (BarChart) findViewById(R.id.chart1);
 
         mChart.getDescription().setEnabled(false);
-
         // if more than 60 entries are displayed in the chart, no values will be
         // drawn
         mChart.setMaxVisibleValueCount(60);
-
         // scaling can now only be done on x- and y-axis separately
         mChart.setPinchZoom(false);
-
+        mChart.setScaleEnabled(false);
         mChart.setDrawBarShadow(false);
         mChart.setDrawGridBackground(false);
+        mChart.setDragEnabled(false);
+        mChart.setExtraLeftOffset(0);
 
+        // X
         XAxis xAxis = mChart.getXAxis();
         xAxis.setPosition(XAxisPosition.BOTTOM);
         xAxis.setDrawGridLines(false);
-        
-        mChart.getAxisLeft().setDrawGridLines(false);
+        // Y left
+        YAxis yAxis = mChart.getAxisLeft();
+        yAxis.setDrawGridLines(false);
+        // Y right
+        YAxis yAxis1 = mChart.getAxisRight();
+        yAxis1.setEnabled(false);
 
         // setting data
         mSeekBarX.setProgress(10);
@@ -71,7 +77,7 @@ public class AnotherBarActivity extends DemoBase implements OnSeekBarChangeListe
 
         // add a nice and smooth animation
         mChart.animateY(2500);
-        
+
         mChart.getLegend().setEnabled(false);
     }
 
@@ -95,7 +101,7 @@ public class AnotherBarActivity extends DemoBase implements OnSeekBarChangeListe
             }
             case R.id.actionToggleHighlight: {
 
-                if(mChart.getData() != null) {
+                if (mChart.getData() != null) {
                     mChart.getData().setHighlightEnabled(!mChart.getData().isHighlightEnabled());
                     mChart.invalidate();
                 }
@@ -117,7 +123,7 @@ public class AnotherBarActivity extends DemoBase implements OnSeekBarChangeListe
             }
             case R.id.actionToggleBarBorders: {
                 for (IBarDataSet set : mChart.getData().getDataSets())
-                    ((BarDataSet)set).setBarBorderWidth(set.getBarBorderWidth() == 1.f ? 0.f : 1.f);
+                    ((BarDataSet) set).setBarBorderWidth(set.getBarBorderWidth() == 1.f ? 0.f : 1.f);
 
                 mChart.invalidate();
                 break;
@@ -166,7 +172,7 @@ public class AnotherBarActivity extends DemoBase implements OnSeekBarChangeListe
 
         if (mChart.getData() != null &&
                 mChart.getData().getDataSetCount() > 0) {
-            set1 = (BarDataSet)mChart.getData().getDataSetByIndex(0);
+            set1 = (BarDataSet) mChart.getData().getDataSetByIndex(0);
             set1.setValues(yVals1);
             mChart.getData().notifyDataChanged();
             mChart.notifyDataSetChanged();
